@@ -27,6 +27,8 @@ img <- generate_txt2img(
     text_prompts = "A dude with no hair and a beard sitting in front of his laptop in a dark room",
     style_preset = "pixel-art"
 )
-base64_to_img(img,"test")
+
+#API returns the image base64 encoded. Save it as png with
+base64_to_img(img,"logo")
 
 ```
