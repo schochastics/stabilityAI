@@ -55,7 +55,7 @@ get_engines_list <- function(token = NULL) {
 #' }
 generate_txt2img <- function(
     text_prompts = "",
-    engine_id = "stable-diffusion-xl-1024-v0-9",
+    engine_id = "stable-diffusion-xl-1024-v1-0",
     Accept = "application/json",
     token = NULL, ...) {
     params <- list(
