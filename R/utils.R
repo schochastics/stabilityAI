@@ -1,12 +1,12 @@
 default_params <- list(
-    height = 512,
-    width = 512,
+    height = 1024,
+    width = 1024,
     cfg_scale = 7,
     clip_guidance_preset = "NONE",
     sampler = "",
     samples = 1,
     seed = 0,
-    steps = 50,
+    steps = 30,
     style_preset = ""
 )
 
@@ -16,18 +16,18 @@ style_preset <- c("", "3d-model", "analog-film", "anime", "cinematic", "comic-bo
 modify_params <- function(params) {
     params <- utils::modifyList(default_params, params)
 
-    if (params[["cfg_scale"]] < 0 | params[["cfg_scale"]] > 35) {
+    if (params[["cfg_scale"]] < 0 || params[["cfg_scale"]] > 35) {
         rlang::abort("parameter cfg_scale must be in [0 .. 35]")
     }
 
     if (!params[["clip_guidance_preset"]] %in% clip_guidance_preset) {
         rlang::abort(paste0("clip_guidance_preset must be one of ", paste0(clip_guidance_preset, collapse = ", ")))
     }
-    if (params[["samples"]] < 1 | params[["samples"]] > 10) {
+    if (params[["samples"]] < 1 || params[["samples"]] > 10) {
         rlang::abort("parameter samples must be in [1 .. 10]")
     }
 
-    if (params[["steps"]] < 10 | params[["steps"]] > 150) {
+    if (params[["steps"]] < 10 || params[["steps"]] > 150) {
         rlang::abort("parameter steps must be in [10 .. 150]")
     }
 
@@ -68,7 +68,7 @@ make_request <- function(path = "v1/user/account", params = list(), header = lis
         req <- httr2::req_headers(req, !!!header)
     }
     req <- httr2::req_user_agent(req, "stability.ai R package (http://github.com/schochastics/stabilityAI)")
-    # resp <- httr2::req_dry_run(req)
+    httr2::req_dry_run(req)
     resp <- httr2::req_perform(req)
     resp
 }
