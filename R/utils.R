@@ -68,7 +68,7 @@ make_request <- function(path = "v1/user/account", params = list(), header = lis
         req <- httr2::req_headers(req, !!!header)
     }
     req <- httr2::req_user_agent(req, "stability.ai R package (http://github.com/schochastics/stabilityAI)")
-    httr2::req_dry_run(req)
+    # httr2::req_dry_run(req)
     resp <- httr2::req_perform(req)
     resp
 }
