@@ -63,8 +63,9 @@ generate_txt2img <- function(
         text_prompts = data.frame(text = text_prompts) # c(text = text_prompts, weight = 1)
     )
     header <- list(
-        Accept = Accept,
-        `Stability-Client-ID` = engine_id
+        Accept = Accept # ,
+        # `Content-type` = "application/json"
+        # `Stability-Client-ID` = engine_id
     )
     params <- modify_params(params = params)
 

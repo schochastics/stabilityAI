@@ -1,5 +1,5 @@
 Package: stabilityAI
-Title: Interact with the API of stability.ai
+Title: Interact with the API of 'stability.ai'
 Version: 0.0.1.9000
 Authors@R: 
     person("David", "Schoch", , "david@schochastics.net", role = c("aut", "cre"),
