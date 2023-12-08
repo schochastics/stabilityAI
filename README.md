@@ -32,3 +32,6 @@ img <- generate_txt2img(
 base64_to_img(img,"logo")
 
 ```
+
+## Help
+[Good thread on Reddit about the parameters of stable diffusion and help with prompting](https://www.reddit.com/r/StableDiffusion/comments/x41n87/how_to_get_images_that_dont_suck_a/)
