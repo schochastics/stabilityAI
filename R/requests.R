@@ -73,6 +73,47 @@ generate_txt2img <- function(
         path = paste0("v1/generation/", engine_id, "/text-to-image"),
         params = params,
         header = header,
+        init_image = NULL,
+        token = token
+    )
+    img <- httr2::resp_body_json(resp)$artifacts[[1]]$base64
+    img
+}
+
+
+#' Image to Image
+#' Create an image from an initial image and text prompt
+#' @inheritParams generate_txt2img
+#' @param ... further parameters to pass to the API
+#' @return png image as base64. can be saved with [base64_to_img]
+#' @details for a detailed list of supported parameters see <https://platform.stability.ai/docs/api-reference#tag/v1generation/operation/textToImage>
+#' @export
+#' @examples
+#' \dontrun{
+#' generate_txt2img(text_prompts = "A lighthouse on a cliff")
+#' }
+generate_img2img <- function(
+    text_prompts = "",
+    init_image = "",
+    engine_id = "stable-diffusion-xl-1024-v1-0",
+    Accept = "application/json",
+    token = NULL, ...) {
+    params <- list(
+        ...,
+        text_prompts = data.frame(text = text_prompts) # c(text = text_prompts, weight = 1)
+    )
+    header <- list(
+        Accept = Accept # ,
+        # `Content-type` = "application/json"
+        # `Stability-Client-ID` = engine_id
+    )
+    params <- modify_params(params = params)
+
+    resp <- make_request(
+        path = paste0("v1/generation/", engine_id, "/image-to-image"),
+        params = params,
+        header = header,
+        init_image = file,
         token = token
     )
     img <- httr2::resp_body_json(resp)$artifacts[[1]]$base64

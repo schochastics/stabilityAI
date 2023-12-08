@@ -55,7 +55,7 @@ check_token <- function(token) {
     token
 }
 
-make_request <- function(path = "v1/user/account", params = list(), header = list(), token = NULL) {
+make_request <- function(path = "v1/user/account", params = list(), header = list(), init_image = NULL, token = NULL) {
     token <- check_token(token)
     req <- httr2::request("https://api.stability.ai")
     req <- httr2::req_url_path_append(req, path)
@@ -63,6 +63,12 @@ make_request <- function(path = "v1/user/account", params = list(), header = lis
     if (length(params) != 0) {
         # req <- httr2::req_url_query(req, !!!params)
         req <- httr2::req_body_json(req, params, simplifyVector = FALSE)
+    }
+    if (!is.null(init_image)) {
+        if (!file.exists(init_image)) {
+            rlang::abort("image file does not exist")
+        }
+        req <- httr2::req_body_file(req, init_image)
     }
     if (length(header) != 0) {
         req <- httr2::req_headers(req, !!!header)
