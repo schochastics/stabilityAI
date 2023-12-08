@@ -1,6 +1,6 @@
 default_params <- list(
-    height = 512,
-    width = 512,
+    height = 1024,
+    width = 1024,
     cfg_scale = 7,
     clip_guidance_preset = "NONE",
     sampler = "",
