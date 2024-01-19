@@ -1,12 +1,12 @@
 default_params <- list(
     height = 1024,
     width = 1024,
-    cfg_scale = 7,
+    cfg_scale = 8,
     clip_guidance_preset = "NONE",
     sampler = "",
     samples = 1,
     seed = 0,
-    steps = 30,
+    steps = 50,
     style_preset = ""
 )
 
